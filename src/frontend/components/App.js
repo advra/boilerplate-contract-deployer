@@ -71,7 +71,10 @@ function App() {
               }}
             />
             <Button 
-            style={{ height: '55px' }}
+              style={{ 
+                height: '55px',
+                width: '150px',
+              }}
               variant="outlined" 
               onClick={handleOpen}>
                 Check ABI
@@ -90,12 +93,19 @@ function App() {
             <AddIcon />
           </IconButton>
         </Box>
-        <Button 
-          size="large"
-          variant="contained" 
-          color="primary" 
-          onClick={handleMint} 
-          style={{ marginTop: 16 }}>
+        <Button
+          variant="contained"
+          onClick={handleMint}
+          sx={{
+            mt: 2,
+            alignSelf: 'flex-end', // Aligns the button to the right
+            backgroundColor: '#0a2bc0', // Sets the background color to red
+            color: '#ffffff', // Sets the text color to white
+            ':hover': {
+              backgroundColor: '#2e46ad', // Optional: Changes color on hover for better UX
+            },
+          }}
+        >
           Mint
         </Button>
         <ContractAbiModal open={open} close={handleClose} json={contractAbi} />

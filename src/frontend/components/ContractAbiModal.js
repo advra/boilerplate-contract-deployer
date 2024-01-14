@@ -40,9 +40,18 @@ const ContractAbiModal = ({ open, close, json }) => {
             }}
           />
         </div>
-        <Button 
-          onClick={close} 
-          sx={{ mt: 2, alignSelf: 'flex-end' }} // Aligns the button to the right
+        <Button
+          variant="contained"
+          onClick={close}
+          sx={{
+            mt: 2,
+            alignSelf: 'flex-end', // Aligns the button to the right
+            backgroundColor: '#ba0000', // Sets the background color to red
+            color: 'white', // Sets the text color to white
+            ':hover': {
+              backgroundColor: '#990000', // Optional: Changes color on hover for better UX
+            },
+          }}
         >
           Close
         </Button>

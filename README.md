@@ -2,12 +2,12 @@
 
 This is a boilerplate contract deployer to ETH. It provides the base template to deploy to `localhost` or infura's `sepolia`.
 
-## Technology Stack & Tools
+## I. Technology Stack & Tools
 
 - Solidity (Writing Smart Contract)
 - [Hardhat](https://hardhat.org/) (Development Framework)
 
-## Requirements For Initial Setup
+## II. Requirements For Initial Setup
 - Install current LTS for Node (preferrably using [NVM](https://github.com/nvm-sh/nvm))
 - Install [Hardhat](https://hardhat.org/) with [hardhat-toolbox](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-toolbox)
 - Optional: If using vscode install Solidity and Hardhat extensions
@@ -63,7 +63,7 @@ npx hardhat run src/backend/scripts/deploy.js --network sepolia
 npm run start
 ```
 
-### Other Useful Commands
+### III. Other Useful Commands
 
 #### Running Unit Tests
 ```bash
@@ -72,7 +72,7 @@ npx hardhat test
 npx hardhat test --parallel
 ```
 
-## On Chain Verficiation:
+#### Etherscan Verficiation:
 When deploying on chain you can optionally verify your contract. Note: Enter contract address with constructor arguments used in deploy.js (if any)
 ```bash
 npx hardhat verify --network sepolia YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGS
