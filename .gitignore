@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-#ignore generated contract json files
+# ignore generated contract json files and log files
 src/frontend/contractsData/*.json
+*.log
 
 # dependencies
 /node_modules
