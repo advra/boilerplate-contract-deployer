@@ -4,23 +4,19 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
   const balance = await ethers.provider.getBalance(deployer.address);
   console.log("Account balance:", balance.toString());
-
   
   // Get the ContractFactories and Signers here.
-  // Note the variable must be the same as the contract name and string
   const AbstractSRNFT = await ethers.getContractFactory("AbstractSRNFT");
-  // add additional contract factories here
-  
   // deploy contracts
   const nft = await AbstractSRNFT.deploy();
-  // deploy all other contracts here
-
   // Save copies of each contracts abi and address to the frontend.
-  saveFrontendFiles(nft , "AbstractSRNFT");
-  // save contract json outputs here
+  
+  const contractAddress = await nft.getAddress();
+  console.log("Deployed contract address:", contractAddress);
+  saveFrontendFiles(nft , "AbstractSRNFT", contractAddress);
 }
 
-function saveFrontendFiles(contract, name) {
+function saveFrontendFiles(contract, name, contractAddress) {
   const fs = require("fs");
   const contractsDir = __dirname + "/../../frontend/contractsData";
 
@@ -30,7 +26,7 @@ function saveFrontendFiles(contract, name) {
 
   fs.writeFileSync(
     contractsDir + `/${name}-address.json`,
-    JSON.stringify({ address: contract.address }, undefined, 2)
+    JSON.stringify({ address: contractAddress }, undefined, 2)
   );
 
   const contractArtifact = artifacts.readArtifactSync(name);
