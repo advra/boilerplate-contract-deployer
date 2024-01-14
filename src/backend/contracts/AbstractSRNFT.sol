@@ -16,7 +16,7 @@ contract AbstractSRNFT is ERC721A {
 
     constructor() ERC721A("AbstractSpaceRiders", "SR") {}
 
-    function mint(uint256 quantity) external payable {
+    function mint(uint256 quantity) public payable {
         if (_totalMinted() + quantity > MAX_SUPPLY) {
             revert ExceedsMaxSupply();
         }

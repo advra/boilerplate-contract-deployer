@@ -61,6 +61,7 @@ npx hardhat run src/backend/scripts/deploy.js --network sepolia
 3. Launching Front End
 ```bash
 npm run start
+# Browser should automatically open otherwise visit localhost:3000
 ```
 
 ### III. Other Useful Commands
@@ -73,11 +74,13 @@ npx hardhat test --parallel
 ```
 
 #### Etherscan Verficiation:
-When deploying on chain you can optionally verify your contract. Note: Enter contract address with constructor arguments used in deploy.js (if any)
+When deploying on chain you can optionally verify your contract. Note: Enter contract address with constructor arguments used in deploy.js (if any).
+Make sure you set your `ETHERSCAN_API_KEY` in (.env)[./.env] (obtained by creating an account on etherscan)
 ```bash
-npx hardhat verify --network sepolia YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGS
-# example
-npx hardhat verify --network sepolia YOUR_CONTRACT_ADDRESS
+npx hardhat verify YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGS --network sepolia
+## EXAMPLE
+npx hardhat verify 0x4C87CD85E702fbd2D8C50E4a1cd3E320d39c1772 --network sepolia
+
 ```
 
 ### Other Notes: 
