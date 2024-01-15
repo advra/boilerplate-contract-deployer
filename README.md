@@ -79,8 +79,7 @@ Make sure you set your `ETHERSCAN_API_KEY` in (.env)[./.env] (obtained by creati
 ```bash
 npx hardhat verify YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGS --network sepolia
 ## EXAMPLE
-npx hardhat verify 0x4C87CD85E702fbd2D8C50E4a1cd3E320d39c1772 --network sepolia
-
+npx hardhat verify 0x876D71dA191F15A2912cB8DaA3a3577532A96EA1 --network sepolia
 ```
 
 ### Other Notes: 

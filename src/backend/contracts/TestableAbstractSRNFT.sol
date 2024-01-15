@@ -14,7 +14,7 @@ contract TestableAbstractSRNFT is AbstractSRNFT {
     }
 
     // New function to expose the _baseURI
-    function baseURI() external view returns (string memory) {
+    function baseURI() external pure returns (string memory) {
         return _baseURI();
     }
     

@@ -1,5 +1,7 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+// const { ethers } = require("hardhat");
+const hre = require("hardhat");
+
 
 describe("AbstractSRNFT", function () {
 
@@ -15,7 +17,7 @@ describe("AbstractSRNFT", function () {
   let addrs;
 
   beforeEach(async function () {
-    [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
+    [owner, addr1, addr2, ...addrs] = await hre.ethers.getSigners();
     // Get contract factories
     // then Deploy the contract
 
@@ -23,7 +25,7 @@ describe("AbstractSRNFT", function () {
     // abstractSRNFTFactory = await ethers.getContractFactory("AbstractSRNFT");
     // nft = await abstractSRNFTFactory.deploy();
 
-    testableContract = await ethers.getContractFactory("TestableAbstractSRNFT");
+    testableContract = await hre.ethers.getContractFactory("TestableAbstractSRNFT");
     nft = await testableContract.deploy();
 
   });
@@ -49,14 +51,25 @@ describe("AbstractSRNFT", function () {
 
   describe("Minting", function () {
     it("Should mint single NFT", async function () {
-      await nft.connect(addr1).mint(1);
+      const pricePerNFT = await nft.PRICE_PER_NFT();
+      const mintPrice = pricePerNFT;
+      await nft.connect(addr1).mint(1, { value: mintPrice });
+
       expect(await nft.balanceOf(addr1)).to.equal(1);
     });
 
     it("Should mint multiple NFTs in a batch", async function () {
-      const batchQuantity = 5;
-      await nft.connect(addr2).mint(batchQuantity);
-      expect(await nft.balanceOf(addr2)).to.equal(batchQuantity);
+      // Note: price from contract is of type BigInt
+      const pricePerNFT = await nft.PRICE_PER_NFT();
+      console.log("Type: " + typeof(pricePerNFT) + " " + pricePerNFT);
+      const batchQuantity = BigInt(5);
+      console.log("Type: " + typeof(batchQuantity) + " " + batchQuantity);
+      // Convert batchQuantity to a string to use with parseUnits
+      const mintPrice = batchQuantity * pricePerNFT;
+      console.log("Type: " + typeof(mintPrice) + " " + mintPrice);
+      await nft.connect(addr1).mint(batchQuantity, { value: mintPrice });
+
+      expect(await nft.balanceOf(addr1.address)).to.equal(batchQuantity);
     });
 
     it("Should not allow minting more than max supply", async function () {
@@ -73,7 +86,8 @@ describe("AbstractSRNFT", function () {
 
   describe("Ownership and Transfers", function () {
     beforeEach(async function () {
-      await nft.connect(addr1).mint(1);
+      const priceForOneNFT = await nft.PRICE_PER_NFT();
+      await nft.connect(addr1).mint(1, { value: priceForOneNFT });
     });
 
     it("Should assign ownership of minted NFTs", async function () {

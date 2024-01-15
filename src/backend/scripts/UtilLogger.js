@@ -3,8 +3,13 @@ const util = require("util");
 
 class UtilLogger {
   constructor() {
-    const timestamp = new Date().toISOString().replace(/[-:.]/g, "_");
-    this.logFileName = `deploy-${timestamp}.log`;
+    const now = new Date();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(now.getDate()).padStart(2, '0');
+    const year = now.getFullYear();
+    const epochTime = now.getTime(); // Epoch time in milliseconds
+
+    this.logFileName = `deploy-${month}-${day}-${year}-${epochTime}.log`;
     this.logStream = fs.createWriteStream(this.logFileName, { flags: 'a' });
     this.writeAsync = util.promisify(this.logStream.write).bind(this.logStream);
   }
