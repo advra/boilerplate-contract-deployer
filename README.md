@@ -78,8 +78,10 @@ When deploying on chain you can optionally verify your contract. Note: Enter con
 Make sure you set your `ETHERSCAN_API_KEY` in (.env)[./.env] (obtained by creating an account on etherscan)
 ```bash
 npx hardhat verify YOUR_CONTRACT_ADDRESS CONSTRUCTOR_ARGS --network sepolia
-## EXAMPLE
-npx hardhat verify 0x876D71dA191F15A2912cB8DaA3a3577532A96EA1 --network sepolia
+## Example Without consturctor args
+## npx hardhat verify 0xb8090EeBe1fE886D8543dc933D6069ef717FA4B0 --network sepolia
+## Example with constructor args
+## npx hardhat verify --contract src/backend/contracts/AbstractSRNFT.sol:AbstractSRNFT 0xb8090EeBe1fE886D8543dc933D6069ef717FA4B0 0x07814fD88beA3167474A1761b8A923cb782B3715 --network sepolia
 ```
 
 ### Other Notes: 

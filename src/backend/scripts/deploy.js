@@ -19,7 +19,7 @@ async function main() {
   // Get the ContractFactories and Signers here.
   const AbstractSRNFT = await hre.ethers.getContractFactory("AbstractSRNFT");
   // deploy contracts
-  const nft = await AbstractSRNFT.deploy();
+  const nft = await AbstractSRNFT.deploy(deployer.address);
   // Save copies of each contracts abi and address to the frontend.
   
   const contractAddress = await nft.getAddress();
