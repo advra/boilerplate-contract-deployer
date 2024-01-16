@@ -5,7 +5,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY; // Access environment variables usi
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.20",
   paths: {
     artifacts: "./src/backend/artifacts",
     sources: "./src/backend/contracts",

@@ -9,13 +9,13 @@ import "./AbstractSRNFT.sol";
 
 contract TestableAbstractSRNFT is AbstractSRNFT {
     // Constructor
-    constructor() AbstractSRNFT() {
-        // Constructor logic if needed
+    constructor(address initialOwner) AbstractSRNFT(initialOwner) {
+        
     }
 
-    // New function to expose the _baseURI
-    function baseURI() external pure returns (string memory) {
-        return _baseURI();
-    }
+    // // New function to expose the _baseURI
+    // function baseURI() external pure returns (string memory) {
+    //     return _baseURI();
+    // }
     
 }
