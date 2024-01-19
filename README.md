@@ -11,6 +11,8 @@ This is a boilerplate ethereum smart contract deployer. The project is structure
 - [x] logging 
 - [ ] working react front end (almost complete) 
 
+Note: The AbstractSpaceRider example contract is deployed to sepolia at `0xb8090eebe1fe886d8543dc933d6069ef717fa4b0`.
+
 ## I. Technology Stack & Tools
 
 - Solidity (Writing Smart Contract)
@@ -43,6 +45,7 @@ Note: Everytime local hardhat node is deployed you need to re-deploy the contrac
     ```bash
     cd boilerplate-contract-deployer
     rm -rf /src/frontend/contractsData/*.json
+    # Make sure you run this at the root of the project otherwise the private key from .env may not load properly!
     npx hardhat node
     ```
 2. Update your private key 
